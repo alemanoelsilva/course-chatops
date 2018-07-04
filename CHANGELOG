@@ -1,3 +1,17 @@
+# v.1.0.0 - Toolkit Mattermost + Bender + Netdata
+-  Primeira versão estável e funcional com as três ferramentas;
+-  Adicionado Netdata Master
+-  Configurada comunicação entre nós Slave > Master
+-  Integração Netdata > Mattermost  
+
+# v.0.6.0 - Bem vindo Netdata
+-  Netdata instalado junto ao bender  
+
+# v.0.5.0 - Laboratório via Docker Compose
+-  Criado Docker Compose  
+-  Adicionado Service 'Mattermost'  
+-  Adicionado Service 'Bender'  
+
 # v.0.4.0 - Bender com Suporte Docker
 -  Criado Dockerfile
 -  Novo script `docker-build.sh`

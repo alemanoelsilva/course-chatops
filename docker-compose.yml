@@ -13,7 +13,7 @@ services:
       - MM_SERVICESETTINGS_ALLOWEDUNTRUSTEDINTERNALCONNECTIONS='localhost 127.0.0.1 0.0.0.0/0 172.19.0.0/16 192.168.0.0/16'
   
   bender:
-    image: alemanoelsilva/bender:0.3.0
+    image: alemanoelsilva/bender:1.0.0
     container_name: bender
     environment:
       - EXPRESS_PORT=8086
@@ -21,12 +21,33 @@ services:
       - MATTERMOST_TOKEN=zenqcopf43bzdkgzsnj6uyo9fh
       - MATTERMOST_INCOME_URL=http://172.19.0.2:8065/hooks/q6mo8xfb33nhiku8qxr37hxmpa
       - HUBOT_LOG_LEVEL=debug
+      - HUBOT_JENKINS_URL=http://172.19.0.5:8081
+      - HUBOT_JENKINS_AUTH=alemanoelsilva:aleparklinkin
     networks: 
       chatops.net:
         ipv4_address: 172.19.0.3
     ports: 
       - "18086:19999"
       - "8086:8086"
+
+  netdata:
+    build: ./netdata-master
+    container_name: netdata-master
+    ports:
+      - "19999:19999"
+    networks: 
+      chatops.net:
+        ipv4_address: 172.19.0.4
+
+  jenkins:
+    image: jenkins/jenkins:lts
+    container_name: jenkins
+    networks: 
+      chatops.net:
+        ipv4_address: 172.19.0.5
+    ports:
+      - "8081:8080"
+      - "50000:50000"
 
 networks:
   chatops.net:
